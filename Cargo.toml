@@ -12,6 +12,8 @@ ark-poly = { version = "0.5.0" }
 ark-bls12-381 = { version = "0.5.0" }
 ark-serialize = { version = "0.5.0" }
 rand = { version = "0.8.4" }
+hkdf = "0.12.4"
+sha2 = "0.10.8"
 
 [features]
 asm = ["ark-ff/asm"]
