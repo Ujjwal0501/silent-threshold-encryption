@@ -1,6 +1,6 @@
 use ark_ec::pairing::Pairing;
 use ark_poly::univariate::DensePolynomial;
-use ark_std::{UniformRand, Zero};
+use ark_std::{UniformRand, Zero, rand::Rng};
 use silent_threshold_encryption::{
     decryption::agg_dec,
     encryption::encrypt,
@@ -81,7 +81,7 @@ fn main() {
      // Use a unique salt in a real application
     let salt = rng.gen::<[u8; 32]>();
     let info = b"aes_encryption";
-    let hk = Hkdf::<Sha256>::new(Some(salt), &ikm);
+    let hk = Hkdf::<Sha256>::new(Some(&salt), &ikm);
     
     let mut okm = [0u8; 32]; // Output key material (256-bit key)
     hk.expand(info, &mut okm).expect("HKDF expand failed");

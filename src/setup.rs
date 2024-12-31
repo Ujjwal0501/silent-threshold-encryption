@@ -4,7 +4,7 @@ use crate::encryption::Ciphertext;
 use crate::kzg::{PowersOfTau, KZG10};
 use crate::utils::lagrange_poly;
 use ark_ec::{pairing::Pairing, PrimeGroup};
-use ark_ff::Field;
+use ark_ff::{Field, PrimeField};
 use ark_poly::{
     domain::EvaluationDomain, univariate::DensePolynomial, DenseUVPolynomial, Polynomial,
     Radix2EvaluationDomain,
@@ -125,6 +125,12 @@ impl<E: Pairing> SecretKey<E> {
     pub fn new<R: RngCore>(rng: &mut R) -> Self {
         SecretKey {
             sk: E::ScalarField::rand(rng),
+        }
+    }
+
+    pub fn from_be_bytes_mod_order(bytes: &[u8]) -> Self {
+        SecretKey {
+            sk: <E::ScalarField as PrimeField>::from_be_bytes_mod_order(bytes),
         }
     }
 

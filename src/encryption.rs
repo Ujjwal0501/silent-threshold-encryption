@@ -8,7 +8,7 @@ use ark_ec::{
 use ark_serialize::*;
 use ark_std::{UniformRand, Zero};
 
-#[derive(CanonicalSerialize, CanonicalDeserialize, Clone)]
+#[derive(CanonicalSerialize, CanonicalDeserialize, Clone, Debug, PartialEq)]
 pub struct Ciphertext<E: Pairing> {
     pub gamma_g2: E::G2,
     pub sa1: [E::G1; 2],
@@ -41,7 +41,7 @@ pub fn encrypt<E: Pairing>(
     t: usize,
     params: &PowersOfTau<E>,
 ) -> Ciphertext<E> {
-    let mut rng = ark_std::test_rng();
+    let mut rng = ark_std::rand::thread_rng();
     let gamma = E::ScalarField::rand(&mut rng);
     let gamma_g2 = params.powers_of_h[0] * gamma;
 

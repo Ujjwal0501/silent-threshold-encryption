@@ -3,6 +3,9 @@ name = "silent-threshold-encryption"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 criterion = { version = "0.5.0", features = ["html_reports"] }
 ark-std = { version = "0.5.0" }
@@ -14,6 +17,9 @@ ark-serialize = { version = "0.5.0" }
 rand = { version = "0.8.4" }
 hkdf = "0.12.4"
 sha2 = "0.10.8"
+wasm-bindgen = "0.2"
+hex = "0.4"
+chacha20poly1305 = "0.10.1"
 
 [features]
 asm = ["ark-ff/asm"]

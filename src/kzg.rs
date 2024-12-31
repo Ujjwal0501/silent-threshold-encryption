@@ -17,7 +17,7 @@ pub struct KZG10<E: Pairing, P: DenseUVPolynomial<E::ScalarField>> {
     _poly: PhantomData<P>,
 }
 
-#[derive(Clone, CanonicalSerialize, CanonicalDeserialize)]
+#[derive(Clone, CanonicalSerialize, CanonicalDeserialize, Debug)]
 pub struct PowersOfTau<E: Pairing> {
     /// Group elements of the form `{ \tau^i G }`, where `i` ranges from 0 to `degree`.
     pub powers_of_g: Vec<E::G1Affine>,
